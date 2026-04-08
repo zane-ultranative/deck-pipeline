@@ -361,6 +361,55 @@
   .output-content::-webkit-scrollbar { width: 4px; }
   .output-content::-webkit-scrollbar-track { background: transparent; }
   .output-content::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 2px; }
+
+  /* ── Theme toggle button ── */
+  .header-right {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .theme-btn {
+    background: none;
+    border: 0.5px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+    color: var(--muted);
+    cursor: pointer;
+    padding: 5px 7px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color 0.15s, border-color 0.15s;
+    line-height: 0;
+  }
+  .theme-btn:hover { color: var(--text); border-color: rgba(240,237,230,0.25); }
+
+  /* ── Smooth theme transition ── */
+  body, .card, textarea, .stage, .output-box-header, .output-content, .mode-btn {
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  /* ── Light mode ── */
+  html.light {
+    --bg:           #F7F4EE;
+    --surface:      #EDE9E0;
+    --card:         #EDE9E0;
+    --card-inner:   #E5E2D8;
+    --text:         #0D0D0B;
+    --muted:        rgba(13,13,11,0.4);
+    --muted-mid:    rgba(13,13,11,0.6);
+    --border:       rgba(13,13,11,0.1);
+    --border-mid:   rgba(13,13,11,0.15);
+  }
+  html.light .page-intro p        { color: rgba(13,13,11,0.7); }
+  html.light .stage               { color: rgba(13,13,11,0.55); }
+  html.light .mode-btn            { color: rgba(13,13,11,0.4); }
+  html.light .mode-btn.active     { background: #D5D0C6; color: #0D0D0B; }
+  html.light .mode-btn:not(.active):hover { color: rgba(13,13,11,0.7); }
+  html.light .input-label         { color: rgba(13,13,11,0.5); }
+  html.light textarea             { border-color: rgba(13,13,11,0.15); }
+  html.light textarea::placeholder{ color: rgba(13,13,11,0.45); }
+  html.light .context-note span   { color: rgba(13,13,11,0.55); }
+  html.light .context-note strong { color: rgba(13,13,11,0.7); }
+  html.light .submit-btn          { background: #0D0D0B; color: #F7F4EE; }
+  html.light .btn-dots span       { background: #F7F4EE; }
+  html.light .output-box-header   { background: #DDD9D0; }
+  html.light .theme-btn:hover     { border-color: rgba(13,13,11,0.3); }
 </style>
 </head>
 
@@ -376,7 +425,10 @@
       </div>
       <span class="logo-name">Ultranative</span>
     </a>
-    <span class="header-tag">Deck Pipeline · v1.0</span>
+    <div class="header-right">
+      <span class="header-tag">Deck Pipeline · v1.0</span>
+      <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme"></button>
+    </div>
   </header>
 
   <div class="page-intro">
@@ -462,6 +514,27 @@
 </div>
 
 <script>
+  // ── Theme toggle ─────────────────────────────────────────────
+  const MOON_SVG = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 9.5C10.3 11.5 8 12.8 5.5 12.2C3 11.6 1 9.2 1 6.5C1 4.2 2.3 2.2 4.3 1.2C3.4 2.5 3 4 3 5.5C3 9.1 5.9 12 9.5 12C10.2 12 10.9 11.8 11.5 11.5Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const SUN_SVG  = `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.2"/><line x1="7" y1="0.5" x2="7" y2="2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="7" y1="11.5" x2="7" y2="13.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="0.5" y1="7" x2="2.5" y2="7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="11.5" y1="7" x2="13.5" y2="7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="2.4" y1="2.4" x2="3.8" y2="3.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="10.2" y1="10.2" x2="11.6" y2="11.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="11.6" y1="2.4" x2="10.2" y2="3.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="3.8" y1="10.2" x2="2.4" y2="11.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`;
+
+  function setTheme(light) {
+    document.documentElement.classList.toggle('light', light);
+    document.getElementById('theme-btn').innerHTML = light ? MOON_SVG : SUN_SVG;
+    localStorage.setItem('theme', light ? 'light' : 'dark');
+  }
+
+  function toggleTheme() {
+    setTheme(!document.documentElement.classList.contains('light'));
+  }
+
+  // Init: saved preference → system preference → dark default
+  (function() {
+    const saved = localStorage.getItem('theme');
+    const preferLight = saved ? saved === 'light' : window.matchMedia('(prefers-color-scheme: light)').matches;
+    setTheme(preferLight);
+  })();
+
   // ── Config ──────────────────────────────────────────────────
   const N8N_WEBHOOK = 'https://zaneultranative.app.n8n.cloud/webhook/ee579dd4-097f-4608-bea2-f7579b091b21';
 
