@@ -6,48 +6,36 @@
 <title>Deck Pipeline — Ultranative</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black:        #0D0D0B;
+    --bg:           #0D0D0B;
+    --surface:      #141414;
+    --card:         #1A1A18;
     --white:        #F5F3EE;
     --gold:         #C4A962;
-    --gold-dim:     #8A6B20;
-    --gold-bg:      rgba(196,169,98,0.08);
-    --gold-border:  rgba(196,169,98,0.25);
-    --surface:      #F9F8F4;
-    --card:         #FFFFFF;
-    --border:       rgba(13,13,11,0.1);
-    --border-mid:   rgba(13,13,11,0.18);
-    --muted:        rgba(13,13,11,0.4);
-    --muted-mid:    rgba(13,13,11,0.6);
+    --gold-bg:      rgba(196,169,98,0.07);
+    --gold-border:  rgba(196,169,98,0.2);
+    --border:       rgba(245,243,238,0.08);
+    --border-mid:   rgba(245,243,238,0.12);
+    --muted:        rgba(245,243,238,0.45);
+    --muted-mid:    rgba(245,243,238,0.6);
     --radius-sm:    6px;
     --radius:       10px;
     --radius-lg:    16px;
-    --radius-xl:    24px;
   }
 
   html { font-size: 16px; -webkit-font-smoothing: antialiased; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--black);
+    font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--white);
     min-height: 100vh;
     overflow-x: hidden;
-  }
-
-  /* ── Grain overlay ── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0; z-index: 0;
-    pointer-events: none;
-    opacity: 0.028;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-size: 128px 128px;
   }
 
   /* ── Layout ── */
@@ -65,16 +53,17 @@
   .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
   .logo-mark {
     width: 32px; height: 32px; border-radius: 8px;
-    background: var(--black);
+    background: var(--surface);
+    border: 0.5px solid var(--border-mid);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
   .logo-mark svg { width: 14px; height: 14px; }
   .logo-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 13px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--white);
   }
   .header-tag {
     font-family: 'DM Mono', monospace;
@@ -85,90 +74,89 @@
   /* ── Page title ── */
   .page-intro { margin-bottom: 40px; animation: fadeUp 0.5s 0.08s ease both; }
   .page-intro h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(28px, 4vw, 38px);
-    font-weight: 800; line-height: 1.12;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 9vw, 96px);
+    font-weight: 400; line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: var(--white);
+    margin-bottom: 20px;
   }
   .page-intro p {
     font-size: 15px; color: var(--muted-mid);
-    line-height: 1.65; max-width: 540px;
+    line-height: 1.65; max-width: 500px;
+    font-weight: 300;
   }
 
   /* ── Stage indicator ── */
   .stages {
-    display: flex; gap: 0;
-    border: 0.5px solid var(--border-mid);
-    border-radius: var(--radius);
-    overflow: hidden;
+    display: flex; gap: 2px;
     margin-bottom: 32px;
     animation: fadeUp 0.5s 0.14s ease both;
   }
   .stage {
-    flex: 1; padding: 11px 16px;
+    flex: 1; padding: 10px 16px;
     display: flex; align-items: center; gap: 9px;
-    font-family: 'Syne', sans-serif;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.07em; text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 400;
+    letter-spacing: 0.12em; text-transform: lowercase;
     color: var(--muted);
-    border-right: 0.5px solid var(--border);
     background: var(--surface);
+    border-radius: var(--radius-sm);
     transition: background 0.2s, color 0.2s;
   }
-  .stage:last-child { border-right: none; }
-  .stage.active { background: var(--card); color: var(--black); }
-  .stage.done { color: var(--gold-dim); background: var(--gold-bg); }
+  .stage.active { background: var(--card); color: var(--white); }
+  .stage.done { color: var(--gold); background: var(--gold-bg); }
   .stage-num {
     width: 18px; height: 18px; border-radius: 50%;
     background: var(--border);
     display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 700;
+    font-size: 10px;
     font-family: 'DM Mono', monospace;
     flex-shrink: 0; transition: background 0.2s, color 0.2s;
+    color: var(--muted);
   }
-  .stage.active .stage-num { background: var(--black); color: var(--white); }
-  .stage.done .stage-num { background: var(--gold); color: var(--white); }
+  .stage.active .stage-num { background: var(--white); color: var(--bg); }
+  .stage.done .stage-num { background: var(--gold); color: var(--bg); }
 
   /* ── Card ── */
   .card {
     background: var(--card);
-    border: 0.5px solid var(--border-mid);
+    border: 0.5px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
     animation: fadeUp 0.5s 0.2s ease both;
   }
 
-  .card-header {
-    padding: 20px 24px 0;
-  }
+  .card-header { padding: 20px 24px 0; }
 
   /* ── Mode toggle ── */
   .mode-toggle {
     display: inline-flex;
-    border: 0.5px solid var(--border-mid);
+    background: var(--surface);
     border-radius: var(--radius-sm);
     overflow: hidden;
     margin-bottom: 20px;
+    padding: 3px;
+    gap: 2px;
   }
   .mode-btn {
-    padding: 8px 20px;
-    font-family: 'Syne', sans-serif;
-    font-size: 12px; font-weight: 600;
-    letter-spacing: 0.05em;
-    border: none; cursor: pointer;
+    padding: 7px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 0.08em;
+    border: none; cursor: pointer; border-radius: 4px;
     background: transparent; color: var(--muted);
     transition: background 0.15s, color 0.15s;
   }
-  .mode-btn.active { background: var(--black); color: var(--white); }
-  .mode-btn:not(.active):hover { background: var(--border); color: var(--black); }
+  .mode-btn.active { background: var(--card); color: var(--white); }
+  .mode-btn:not(.active):hover { color: var(--muted-mid); }
 
   /* ── Input area ── */
   .input-wrap { padding: 0 24px 20px; }
   .input-label {
     font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--muted);
-    letter-spacing: 0.06em; text-transform: uppercase;
+    font-size: 10px; color: var(--muted);
+    letter-spacing: 0.1em; text-transform: lowercase;
     margin-bottom: 8px; display: block;
   }
   textarea {
@@ -178,13 +166,13 @@
     padding: 14px 16px;
     font-family: 'DM Sans', sans-serif;
     font-size: 14px; line-height: 1.7;
-    color: var(--black);
+    color: var(--white);
     background: var(--surface);
     resize: vertical; outline: none;
-    transition: border-color 0.15s, background 0.15s;
+    transition: border-color 0.15s;
     min-height: 160px;
   }
-  textarea:focus { border-color: var(--gold); background: var(--card); }
+  textarea:focus { border-color: rgba(196,169,98,0.4); }
   textarea::placeholder { color: var(--muted); }
 
   /* ── Context note ── */
@@ -197,35 +185,35 @@
     display: flex; align-items: flex-start; gap: 10px;
   }
   .context-dot {
-    width: 6px; height: 6px; border-radius: 50%;
+    width: 5px; height: 5px; border-radius: 50%;
     background: var(--gold); flex-shrink: 0; margin-top: 5px;
   }
   .context-note span {
-    font-size: 12px; color: var(--gold-dim); line-height: 1.6;
+    font-size: 11px; color: rgba(196,169,98,0.7); line-height: 1.6;
     font-family: 'DM Mono', monospace;
   }
-  .context-note strong { font-weight: 500; }
+  .context-note strong { font-weight: 500; color: var(--gold); }
 
   /* ── Submit button ── */
   .submit-wrap { padding: 0 24px 24px; }
   .submit-btn {
-    width: 100%; padding: 15px 24px;
-    background: var(--black); color: var(--white);
+    width: 100%; padding: 16px 24px;
+    background: var(--white); color: var(--bg);
     border: none; border-radius: var(--radius);
-    font-family: 'Syne', sans-serif;
-    font-size: 13px; font-weight: 700;
-    letter-spacing: 0.06em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 0.04em;
     cursor: pointer; display: flex;
     align-items: center; justify-content: center; gap: 10px;
     transition: opacity 0.15s, transform 0.1s;
   }
-  .submit-btn:hover:not(:disabled) { opacity: 0.85; }
+  .submit-btn:hover:not(:disabled) { opacity: 0.88; }
   .submit-btn:active:not(:disabled) { transform: scale(0.99); }
-  .submit-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .submit-btn:disabled { opacity: 0.3; cursor: not-allowed; }
   .btn-dots { display: flex; gap: 4px; }
   .btn-dots span {
     width: 5px; height: 5px; border-radius: 50%;
-    background: var(--white);
+    background: var(--bg);
     animation: pulse 1.2s ease-in-out infinite;
   }
   .btn-dots span:nth-child(2) { animation-delay: 0.2s; }
@@ -244,13 +232,13 @@
   .milestone {
     display: inline-flex; align-items: center; gap: 7px;
     font-family: 'DM Mono', monospace;
-    font-size: 10px; font-weight: 500;
-    letter-spacing: 0.09em; text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 0.1em; text-transform: lowercase;
     padding: 4px 10px; border-radius: 20px;
     margin-bottom: 14px;
   }
-  .m1 { background: rgba(13,13,11,0.06); color: var(--black); }
-  .m2 { background: var(--gold-bg); color: var(--gold-dim); border: 0.5px solid var(--gold-border); }
+  .m1 { background: var(--surface); color: var(--muted-mid); border: 0.5px solid var(--border-mid); }
+  .m2 { background: var(--gold-bg); color: var(--gold); border: 0.5px solid var(--gold-border); }
 
   .output-box {
     border: 0.5px solid var(--border-mid);
@@ -266,25 +254,25 @@
   .output-box-title {
     font-family: 'DM Mono', monospace;
     font-size: 10px; color: var(--muted);
-    letter-spacing: 0.07em; text-transform: uppercase;
+    letter-spacing: 0.08em; text-transform: lowercase;
   }
   .copy-btn {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.06em;
     color: var(--muted); background: none;
     border: 0.5px solid var(--border-mid);
     border-radius: var(--radius-sm);
     padding: 4px 11px; cursor: pointer;
     transition: all 0.15s;
   }
-  .copy-btn:hover { background: var(--border); color: var(--black); }
-  .copy-btn.copied { color: #3B6D11; border-color: rgba(59,109,17,0.3); background: rgba(59,109,17,0.07); }
+  .copy-btn:hover { border-color: var(--border-mid); color: var(--white); }
+  .copy-btn.copied { color: #6DBF5A; border-color: rgba(109,191,90,0.3); background: rgba(109,191,90,0.06); }
 
   .output-content {
     padding: 18px 20px;
     font-family: 'DM Mono', monospace;
     font-size: 12.5px; line-height: 1.8;
-    color: var(--black);
+    color: var(--muted-mid);
     white-space: pre-wrap;
     max-height: 400px; overflow-y: auto;
     background: var(--card);
@@ -309,12 +297,12 @@
   /* ── Error state ── */
   .error-note {
     margin: 16px 24px;
-    border: 0.5px solid rgba(180,40,40,0.2);
+    border: 0.5px solid rgba(220,80,80,0.2);
     border-radius: var(--radius);
-    background: rgba(180,40,40,0.05);
+    background: rgba(220,80,80,0.06);
     padding: 11px 15px;
     font-family: 'DM Mono', monospace;
-    font-size: 12px; color: #8B2020; line-height: 1.6;
+    font-size: 12px; color: rgba(220,100,100,0.9); line-height: 1.6;
     display: none;
   }
   .error-note.visible { display: block; }
@@ -329,7 +317,7 @@
     font-size: 11px; color: var(--muted);
     display: flex; align-items: center; gap: 8px;
   }
-  .future-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--border-mid); flex-shrink: 0; }
+  .future-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border-mid); flex-shrink: 0; }
 
   /* ── Footer ── */
   footer {
@@ -347,7 +335,7 @@
     font-size: 11px; color: var(--muted);
   }
   .footer-right a { color: var(--muted); text-decoration: none; }
-  .footer-right a:hover { color: var(--black); }
+  .footer-right a:hover { color: var(--white); }
 
   /* ── Animations ── */
   @keyframes fadeUp {
