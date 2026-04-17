@@ -1,0 +1,186 @@
+{
+  "title": "Ultranative AI Strategy",
+  "author": "Ultranative",
+  "date": "2026",
+  "slides": [
+    {
+      "type": "Title",
+      "content": {
+        "eyebrow": "Ultranative",
+        "title": "Fueling the Future of AI-Native Brands",
+        "subtitle": "Strategy · Execution · Scale",
+        "meta": "April 2026"
+      }
+    },
+    {
+      "type": "Problem",
+      "content": {
+        "headline": "Most companies adopt AI tools. Few become AI-native.",
+        "points": [
+          "Bolt-on tools create fragmented workflows, not competitive moats",
+          "Generic AI outputs dilute brand voice and erode trust",
+          "Teams move fast on tactics while strategy lags behind",
+          "The window to build durable AI advantage is closing fast"
+        ]
+      }
+    },
+    {
+      "type": "Data",
+      "content": {
+        "eyebrow": "The Market Moment",
+        "headline": "The numbers don't lie",
+        "stats": [
+          {
+            "value": "$1.3T",
+            "label": "AI Market by 2032",
+            "sub": "Growing at 36% CAGR across enterprise segments"
+          },
+          {
+            "value": "78%",
+            "label": "of Execs Unprepared",
+            "sub": "Lack a coherent AI integration strategy entering 2026"
+          },
+          {
+            "value": "11×",
+            "label": "ROI Uplift",
+            "sub": "For AI-native vs. AI-augmented businesses over 3 years"
+          }
+        ]
+      }
+    },
+    {
+      "type": "Opportunity",
+      "content": {
+        "headline": "AI-native companies will define the next decade.",
+        "body": "The opportunity isn't to use AI — it's to be built around it. Brands that architect their operations, voice, and decision-making with AI at the core will compound advantages that laggards simply cannot replicate. The gap between AI-native and AI-augmented widens every quarter."
+      }
+    },
+    {
+      "type": "Framework",
+      "content": {
+        "eyebrow": "Our Approach",
+        "headline": "The Ultranative Three-Layer Model",
+        "items": [
+          {
+            "number": "01",
+            "label": "Signal",
+            "body": "Surface intelligence from your existing data, conversations, and market signals before building anything new."
+          },
+          {
+            "number": "02",
+            "label": "Systems",
+            "body": "Build AI-native workflows that replace manual bottlenecks with scalable, compounding logic."
+          },
+          {
+            "number": "03",
+            "label": "Scale",
+            "body": "Lock in your advantage with automated feedback loops, continuous optimisation, and brand-consistent outputs."
+          }
+        ]
+      }
+    },
+    {
+      "type": "Case Study",
+      "content": {
+        "eyebrow": "In Practice",
+        "company": "Meridian Capital Partners",
+        "challenge": "A mid-market investment firm spending 60+ hours per week on deal memo production, with inconsistent quality and slow turnaround on time-sensitive opportunities.",
+        "outcome": "Deployed an AI-native deal pipeline reducing memo production from 3 days to under 4 hours, with analyst time reallocated to higher-value origination and relationship work.",
+        "stat": {
+          "value": "94%",
+          "label": "reduction in memo production time"
+        }
+      }
+    },
+    {
+      "type": "Two-column",
+      "content": {
+        "eyebrow": "Engagement Model",
+        "headline": "What we build together",
+        "left": {
+          "label": "Strategy Sprint",
+          "bullets": [
+            "AI readiness audit across all functions",
+            "Use-case prioritisation matrix",
+            "Build vs. buy decision framework",
+            "90-day execution roadmap with clear owners"
+          ]
+        },
+        "right": {
+          "label": "Embedded Execution",
+          "bullets": [
+            "Dedicated AI integration team on-site",
+            "Weekly build-measure-learn cycles",
+            "Voice and brand system development",
+            "Ongoing optimisation retainer post-launch"
+          ]
+        }
+      }
+    },
+    {
+      "type": "Comparison",
+      "content": {
+        "eyebrow": "Why AI-Native",
+        "headline": "AI-native vs. AI-augmented",
+        "left": {
+          "label": "AI-Native (Ultranative)",
+          "points": [
+            "AI at the core of every workflow",
+            "Brand voice baked into every output",
+            "Compounding advantage over time",
+            "Custom systems built for your context",
+            "Feedback loops that self-improve"
+          ]
+        },
+        "right": {
+          "label": "AI-Augmented (Status Quo)",
+          "points": [
+            "AI bolted onto existing processes",
+            "Generic outputs requiring heavy editing",
+            "Marginal efficiency gains only",
+            "Off-the-shelf tools with no differentiation",
+            "Manual iteration with no memory"
+          ]
+        }
+      }
+    },
+    {
+      "type": "Timeline",
+      "content": {
+        "eyebrow": "Roadmap",
+        "headline": "From kickoff to compound advantage",
+        "items": [
+          {
+            "date": "Week 1–2",
+            "label": "Audit",
+            "body": "Diagnose current state and map the full AI opportunity landscape"
+          },
+          {
+            "date": "Week 3–6",
+            "label": "Build",
+            "body": "Prototype core workflows and integrate with live data sources"
+          },
+          {
+            "date": "Week 7–10",
+            "label": "Deploy",
+            "body": "Launch to production with instrumentation and feedback loops"
+          },
+          {
+            "date": "Week 11+",
+            "label": "Compound",
+            "body": "Iterate, automate, and expand the system across the organisation"
+          }
+        ]
+      }
+    },
+    {
+      "type": "CTA",
+      "content": {
+        "eyebrow": "Ready to build",
+        "headline": "Let's architect your AI-native advantage.",
+        "sub": "Six-week strategy sprint. Immediate traction. Durable moat.",
+        "contact": "hello@ultranative.com  ·  ultranative.com"
+      }
+    }
+  ]
+}
